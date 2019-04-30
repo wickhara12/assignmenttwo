@@ -5,6 +5,7 @@ class UmlInterpreter:
         self.class_dict = {}
         self.attr_list = []
         self.method_list = []
+        self.remove_list = ['\n', '\t', '(', ')', ' ', 'class', ' ', '{', '\n']
 
     def uml_decoder(self, uml_content: object) -> object:
         for line in uml_content:
@@ -28,25 +29,22 @@ class UmlInterpreter:
         self.attr_list = []
 
     def uml_class(self, new_line):
-        remove_list = ['class', ' ', '{', '\n']
-        return self.char_remover(new_line, remove_list)
+        self.remove_list
+        return self.char_remover(new_line, self.remove_list)
 
     def uml_method(self, new_line):
-        remove_list = ['\n', '\t', '(', ')', ' ']
-        return self.char_remover(new_line, remove_list)
+        self.remove_list
+        return self.char_remover(new_line, self.remove_list)
 
     def uml_attribute(self, new_line):
-        remove_list = ['\n', '\t', '(', ')', ' ']
-        return self.char_remover(new_line, remove_list)
+        self.remove_list
+        return self.char_remover(new_line, self.remove_list)
 
-    def char_remover(self, string_input, remove_list):
+    def char_remover(self, string_input, remove_list: object) -> object:
         for item in remove_list:
             string_input = string_input.replace(item, '')
         return string_input
 
 
-# file_content = {'class': 'TestClass', 'attribute': ['attribute', 'attribute1'], 'methods': ['method1()', 'method2()']}
-# file_content = ['@startuml\n', '\n', 'class dummy {\n', '}\n', '@enduml']
-# test = UmlInterpreter()
-# output = test.uml_decoder(file_content)
-# print(output)
+
+

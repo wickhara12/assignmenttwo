@@ -5,6 +5,7 @@ class UmlInterpreter:
         self.class_dict = {}
         self.attr_list = []
         self.method_list = []
+        self.remove_list = ['\n', '\t', '(', ')', ' ']
 
     def uml_decoder(self, uml_content: object) -> object:
         for line in uml_content:
@@ -45,8 +46,4 @@ class UmlInterpreter:
         return string_input
 
 
-# file_content = {'class': 'TestClass', 'attribute': ['attribute', 'attribute1'], 'methods': ['method1()', 'method2()']}
-# file_content = ['@startuml\n', '\n', 'class dummy {\n', '}\n', '@enduml']
-# test = UmlInterpreter()
-# output = test.uml_decoder(file_content)
-# print(output)
+
